@@ -2,8 +2,7 @@ name: Send mail
 on:
   push:
     branches:
-      - 'main'
-      - 'master'
+      - 'prod'
 jobs:
   send-mail:
     runs-on: ubuntu-latest
