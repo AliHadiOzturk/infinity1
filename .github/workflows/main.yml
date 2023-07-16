@@ -1,0 +1,23 @@
+name: Send mail
+on:
+  push:
+    branches:
+      - 'main'
+      - 'master'
+jobs:
+  send-mail:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Email 🚀
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: Github Commit
+          to: mert.ozturk@teleskop.app, ozturkalihadi@gmail.com
+          from: Ali Hadi Öztürk
+          html_body: "Merhaba, <br/> ${{github.REPOSITORY}} projesinin ${{github.REF_NAME}} branchine yeni bir PR merge edildi. <br/> Commit url: ${{github.SERVER_URL}}/${{github.REPOSITORY}}/commit/${{github.SHA}} <br/> <br/> İyi çalışmalar."
+          ignore_cert: true
