@@ -2,15 +2,24 @@ import json
 
 
 class GenericException(Exception):
-    def __init__(self, code, message, key):
+    def __init__(self, code, message, key, payload=None):
         self.code = code
         self.message = message
         self.key = key
+        self.payload = payload
+
+        p = None
+        try:
+            p = json.loads(self.payload)
+        except:
+            p = self.payload if not isinstance(
+                self.payload, Exception) else str(self.payload)
 
         self.body = json.dumps({
             "code": self.code,
             "message": self.message,
-            "key": self.key
+            "key": self.key,
+            "payload": p
         })
 
     def __str__(self):
@@ -39,5 +48,5 @@ class Exceptions:
 
     # Timeout = GenericException(408, "Request timed out", "timeout")
     NotFound = GenericException(404, "Not Found", "not_found")
-    ServerError = GenericException(
-        500, "Unexpected error occurred.", "unexpected_error")
+    ServerError = (lambda payload=None: GenericException(
+        500, "Unexpected error occurred.", "unexpected_error", payload))

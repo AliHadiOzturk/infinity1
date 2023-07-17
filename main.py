@@ -43,7 +43,7 @@ def create_app(name):
             print(e)
             return nok(e)
 
-        return nok(Exceptions.ServerError)
+        return nok(Exceptions.ServerError())
 
     return a
 
