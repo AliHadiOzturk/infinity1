@@ -16,6 +16,6 @@ class Config:
 
         self.APP_NAME = os.environ.get("APP_NAME")
         self.PORT = os.environ.get("PORT")
-        self.LOG_LEVEL = os.environ.get("LOG_LEVEL") if not None else "ERROR"
+        self.LOG_LEVEL = os.environ.get("LOG_LEVEL") if not " " else "DEBUG"
 
         return self
