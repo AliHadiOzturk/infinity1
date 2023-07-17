@@ -7,7 +7,7 @@ from common.exception import GenericException
 news = Blueprint('news', __name__)
 
 @news.route(f"<url>", methods=["GET"])
-def mine(url: str):
+def content(url: str):
     try:
         # TODO: Implement site crawler
         return ok(None)
