@@ -40,9 +40,9 @@ def content(url: str):
 
             htmls = soap.find_all("html")
             html = htmls[1] if len(htmls) > 1 else htmls[0]
-            content = html.text.replace("\\n", "")
-            ns.description = html.text.split("\\.")[0]
-            ns.content = html.text
+            content = html.text.replace("\n", "")
+            ns.description = content.split(".")[0]
+            ns.content = content
             news.append(ns)
 
         return news
