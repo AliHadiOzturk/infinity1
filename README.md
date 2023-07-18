@@ -24,6 +24,9 @@ To run application ``
 - Linux/MacOS
     - `python -m flask run` or `python -m flask run`
 
-### Sample
+### Test
 
-TBD
+#### Postman
+[Postman Collection](https://api.postman.com/collections/6250379-b76db229-bfcc-4992-ba7b-395808d1001e?access_key=PMAT-01H5K44RVW2SBA0Q3BPSGNXJNK) can be use to test the app.
+Before use of postman collection create environment and add variable name `host` and value with `http://localhost:5000/api`\
+Dont fotget to select environment from right top corner of postman
