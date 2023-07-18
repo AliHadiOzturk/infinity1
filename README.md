@@ -20,9 +20,9 @@ To use environment variables create a file with name `.env` and copy contents fr
 #### Running
 To run application ``
 - Windows
-    - `python -m flask run`
+    - `python -m flask run` or `python app.py`
 - Linux/MacOS
-    - `python -m flask run` or `python -m flask run`
+    - `python -m flask run` or `python app.py` 
 
 ### Test
 

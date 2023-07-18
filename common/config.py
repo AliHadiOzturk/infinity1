@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 class Config:
     APP_NAME = None
     PORT = 5001  # default port
+    DEBUG = False
     LOG_LEVEL = "ERROR"
 
     def load(self):
@@ -17,5 +18,6 @@ class Config:
         self.APP_NAME = os.environ.get("APP_NAME")
         self.PORT = os.environ.get("PORT")
         self.LOG_LEVEL = os.environ.get("LOG_LEVEL") if not " " else "DEBUG"
+        self.DEBUG = True if os.environ.get("DEBUG") == "true" else False
 
         return self
