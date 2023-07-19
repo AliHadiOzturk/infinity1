@@ -11,4 +11,9 @@ logging.info("Configuration loaded")
 
 logging.info(f"APP NAME: {config.APP_NAME}")
 
-logger = logging
+fh = logging.FileHandler('log.txt')
+fh.setLevel(logging.getLevelName(config.LOG_LEVEL))
+
+logger = logging.getLogger()
+
+logger.addHandler(fh)
