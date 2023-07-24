@@ -24,6 +24,20 @@ To run application ``
 - Linux/MacOS
     - `python -m flask run` or `python app.py` 
 
+
+### Build & Run with Docker
+Dockerfile and docker compose files are created. No need for external configuration other than the ```Environment Variables``` 
+
+#### MacOS & Linux
+```app.sh``` can be use for building & starting and stoping docker container.
+
+To use ```app.sh```:\
+Run ```sh app.sh``` in the terminal and select desired action
+
+#### Windows
+To run with docker in windows use ```app.bat``` script file.
+Run ```app.bat``` in the command line and select desired action
+
 ### Test
 
 #### Postman
