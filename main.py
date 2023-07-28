@@ -6,46 +6,46 @@ from werkzeug.exceptions import NotFound
 from common import config, logger, GenericException, Exceptions
 
 
-def ok(data, code=200, headers={}):
-    h = {
+def response_ok(data, code=200, headers={}):
+    request_headers = {
         'content-type': 'application/json',
         **headers
     }
 
-    return Response(data, code, h)
+    return Response(data, code, request_headers)
 
 
-def nok(error):
-    h = {
+def not_ok(error):
+    request_headers = {
         'content-type': 'application/json',
     }
 
-    return Response(error.body, error.code, h)
+    return Response(error.body, error.code, request_headers)
 
 
 def create_app(name):
-    a = Flask(name)
+    flask_app = Flask(name)
     logger.info(
-        f"Web server mode is {'development' if a.config['DEBUG'] else 'production'}")
+        f"Web server mode is {'development' if flask_app.config['DEBUG'] else 'production'}")
 
     # a.json_encoder = models.DefaultEncoder
 
-    CORS(a, origins="*",
+    CORS(flask_app, origins="*",
          expose_headers=["Authorization", "metadata"], supports_credentials=True)
 
-    @a.errorhandler(NotFound)
+    @flask_app.errorhandler(NotFound)
     def not_found(e):
-        return nok(Exceptions.NotFound)
+        return not_ok(Exceptions.NotFound)
     
-    @a.errorhandler(Exception)
+    @flask_app.errorhandler(Exception)
     def handle_exception(e):
         if isinstance(e, GenericException) and e is not Exceptions.NotFound:
             print(e)
-            return nok(e)
+            return not_ok(e)
 
-        return nok(Exceptions.ServerError())
+        return not_ok(Exceptions.ServerError())
 
-    return a
+    return flask_app
 
 
 app = create_app(config.APP_NAME)
