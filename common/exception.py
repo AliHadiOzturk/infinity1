@@ -8,18 +8,18 @@ class GenericException(Exception):
         self.key = key
         self.payload = payload
 
-        p = None
+        payload = None
         try:
-            p = json.loads(self.payload)
+            payload = json.loads(self.payload)
         except:
-            p = self.payload if not isinstance(
+            payload = self.payload if not isinstance(
                 self.payload, Exception) else str(self.payload)
 
         self.body = json.dumps({
             "code": self.code,
             "message": self.message,
             "key": self.key,
-            "payload": p
+            "payload": payload
         })
 
     def __str__(self):
@@ -31,12 +31,12 @@ class GenericException(Exception):
     @classmethod
     def decode(cls, j):
         data = json.loads(j)
-        c = data.get('code')
-        m = data.get('message')
-        k = data.get('key')
-        e = Exception(data.get('payload'))
+        code = data.get('code')
+        message = data.get('message')
+        key = data.get('key')
+        exception = Exception(data.get('payload'))
 
-        return cls(c, m, k, e)
+        return cls(code, message, key, exception)
 
 
 class Exceptions:

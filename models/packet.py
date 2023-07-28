@@ -10,11 +10,11 @@ class Packet(Base):
         self.payload = payload
 
     def encode(self):
-        p = []
+        payload = []
         if isinstance(self.payload, list):
             for item in self.payload:
-                p.append(item.as_dict())
+                payload.append(item.as_dict())
 
-        self.payload = p if len(p) > 1 else self.payload
+        self.payload = payload if len(payload) > 1 else self.payload
 
         return json.dumps(self.as_dict())

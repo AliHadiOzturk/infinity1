@@ -1,5 +1,5 @@
 from flask import Blueprint
-from main import nok, ok
+from main import not_ok, response_ok
 from models import Packet
 from . import service
 
@@ -13,6 +13,6 @@ def content(url: str):
     try:
         response = service.content(url)
         # TODO: COnsider using enum for http response types
-        return ok(Packet(200, response).encode())
+        return response_ok(Packet(200, response).encode())
     except GenericException as err:
-        return nok(err)
+        return not_ok(err)
