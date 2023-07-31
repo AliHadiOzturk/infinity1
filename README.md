@@ -26,7 +26,7 @@ To run application ``
 
 
 ### Build & Run with Docker
-Dockerfile and docker compose files are created. No need for external configuration other than the ```Environment Variables``` 
+Follow [```Environment Variables```](https://github.com/AliHadiOzturk/infinity1/tree/prod#environment-variables) steps before using docker. 
 
 #### MacOS & Linux
 ```app.sh``` can be use for building & starting and stoping docker container.
